@@ -3,7 +3,6 @@ use std::process::Command;
 
 fn main() {
     loop {
-        // Mostrar el menú
         println!("Welcome to Git Wizard!");
         println!("1. List branches");
         println!("2. Create a new branch");
@@ -16,7 +15,7 @@ fn main() {
         println!("9. Exit");
 
         print!("Choose an option: ");
-        io::stdout().flush().unwrap(); // Limpia la línea para que el prompt aparezca correctamente
+        io::stdout().flush().unwrap();
 
         let mut option = String::new();
         io::stdin()
@@ -142,6 +141,11 @@ fn show_git_status() {
         String::from_utf8_lossy(&status.stdout),
         RESET
     );
+
+    let stdout = String::from_utf8_lossy(&status.stdout);
+    let stderr = String::from_utf8_lossy(&status.stderr);
+    println!("stdout: {}", stdout);
+    println!("stderr: {}", stderr);
 }
 
 fn get_current_branch() -> Option<String> {
